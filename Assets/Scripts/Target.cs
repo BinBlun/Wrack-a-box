@@ -46,11 +46,17 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
         if (!CompareTag("Bad"))
         {
-            gameManager.GameOver();
+            gameManager.UpdateLives();
+
+            if(gameManager.lives <= 0 )
+            {
+                gameManager.livesText.text = "Lives: 0";
+                gameManager.GameOver();
+            }
         }
+        Destroy(gameObject);
     }
 
     Vector3 RandomForce()

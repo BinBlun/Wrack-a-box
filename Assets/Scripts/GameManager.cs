@@ -10,16 +10,20 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
     public GameObject titleScreen;
+
     private float spawnRate = 1.0f;
+
+    public int lives;
     public int score;
     public bool isGameActive;
     // Start is called before the first frame update
     void Start()
     {
-         
+        livesText.text = "Lives: " + lives;
     }
 
     // Update is called once per frame
@@ -44,6 +48,12 @@ public class GameManager : MonoBehaviour
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+    }
+
+    public void UpdateLives()
+    {
+        lives --; 
+        livesText.text = "Lives: " + lives;   
     }
 
     public void GameOver()
